@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt')
 
 
 const SignuUser = (req,res)=>{
-  console.log(req.body);
+ 
           //for validation using validator
      const { errors, isValid } = validateSignupInput(req.body);
 
