@@ -1,9 +1,10 @@
-import { useState } from "react"
+
 import styled from "styled-components"
 import {popularProducts} from '../data'
-import AfterCart  from './Buttons/AfterCart'
-import BeforeCart  from './Buttons/BeforeCart'
+import AfterCart  from './cartButtons/AfterCart'
+import BeforeCart  from './cartButtons/BeforeCart'
 import { useSelector } from "react-redux"
+import CartButtons from "./cartButtons"
 
 
 const Container = styled.div`
@@ -30,25 +31,19 @@ const Image = styled.img`
 
 const Products = () => {
 
- const {cartCount} = useSelector((state)=> state.cart)
+ const {cartList} = useSelector((state)=> state.cart)
  
-
-
- 
- 
+console.log(cartList);
     
   return (
     <>
    <Header>ALL PRODUCTS</Header>
     <Container>
        
-      {popularProducts.map(item=>(
+      {popularProducts.map(product=>(
          <Card>
-         <Image src={item.img}/>
-
-    {cartCount > 0 ? <AfterCart/> :<BeforeCart />}
-          
-         
+         <Image src={product.img}/>
+            <CartButtons product={product}/>       
           </Card>
          
       ))}

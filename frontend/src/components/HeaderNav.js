@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch,faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import 'font-awesome/css/font-awesome.min.css';
+import { useSelector } from 'react-redux';
 
 const Container = styled.div`
          height: 60px;
@@ -47,12 +48,12 @@ const Count = styled.span`
   background-color: red;
   color: white;
   border-radius: 50%;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 10px;
   text-align: center;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: bold;
-  padding: 2px 0;
+  padding-bottom: 18px;
 `;
 
 const Center = styled.div`
@@ -77,6 +78,10 @@ const MenuItem = styled.div`
 
 
 const HeaderNav = () => {
+
+  const {cartList} = useSelector((state)=> state.cart)
+  console.log(cartList.length);
+
   return (
     <Container>
     <Wrapper>
@@ -98,7 +103,7 @@ const HeaderNav = () => {
    <MenuItem>
     <BadgeWrapper>
    <FontAwesomeIcon icon={faShoppingCart} />
-    <Count>1</Count> 
+    <Count>{cartList?.length}</Count> 
    </BadgeWrapper>
    </MenuItem>
 

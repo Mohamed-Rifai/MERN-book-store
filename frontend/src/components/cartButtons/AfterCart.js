@@ -16,16 +16,16 @@ const CountNum = styled.span`
         margin-top: 1rem;
 `
 
-const AfterCart = () => {
-     const {cartCount} = useSelector((state)=> state.cart)
+const AfterCart = ({cartCount,productID }) => {
+    
      
      const dispatch = useDispatch()
 
   return (
     <CartButton>
-      <Buttons onClick={() => dispatch(decrement())}>-</Buttons>
+      <Buttons onClick={() => dispatch(decrement(productID))}>-</Buttons>
       <CountNum>{cartCount}</CountNum>
-      <Buttons onClick={() => dispatch(increment())}>+</Buttons>
+      <Buttons onClick={() => dispatch(increment(productID))}>+</Buttons>
     </CartButton>
   )
 }

@@ -15,14 +15,14 @@ const Button = styled.button`
     margin: 1rem;
 `
 
-const BeforeCart = () => {
+const BeforeCart = ({product}) => {
 
  const dispatch = useDispatch()
  
 
   return (
     <>
-       <Button onClick={ () => dispatch(addToCart())}>Add to cart</Button>
+       <Button onClick={ () => dispatch(addToCart(product))}>Add to cart</Button>
     </>
   )
 }
