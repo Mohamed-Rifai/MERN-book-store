@@ -65,6 +65,7 @@ const loginUser = (req,res)=>{
                                 id: user.id,
                                 name: user.name                             
                             }
+                            
                             //creating jwt token and send to frontend
 
                             jwt.sign(payload, 'secret', 
@@ -76,7 +77,7 @@ const loginUser = (req,res)=>{
                                     res.json({
                                         success: true,
                                         name: user.name,
-                                        email:user.email,
+                                        email:user.email, 
                                         id:user.id,
                                         token: `Bearer ${token}`
                                     });

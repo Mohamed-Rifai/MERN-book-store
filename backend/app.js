@@ -3,7 +3,10 @@ require('./config/connection')
 const express = require('express')
 const logger = require('morgan')
 const userRoute = require('./routes/user')
+const productRoute = require('./routes/product')
 const cors = require('cors')
+
+
 
 
 const app = express()
@@ -20,6 +23,7 @@ app.use(express.urlencoded({extended:true}))
 
 //route middleware
 app.use('/',userRoute)
+app.use('/products',productRoute)
 
 
 
