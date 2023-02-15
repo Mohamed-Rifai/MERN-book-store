@@ -18,11 +18,16 @@ const Button = styled.button`
 const BeforeCart = ({product}) => {
 
  const dispatch = useDispatch()
+
+ const handleClick = ()=>{
+
+
+ }
  
 
   return (
     <>
-       <Button onClick={ () => dispatch(addToCart(product))}>Add to cart</Button>
+       <Button onClick={ () => dispatch(addToCart(product)) }>Add to cart</Button>
     </>
   )
 }

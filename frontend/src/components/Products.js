@@ -4,7 +4,10 @@ import {popularProducts} from '../data'
 import AfterCart  from './cartButtons/AfterCart'
 import BeforeCart  from './cartButtons/BeforeCart'
 import { useSelector } from "react-redux"
+import axios from '../axios'
 import CartButtons from "./cartButtons"
+import { useEffect } from "react"
+import { useState } from "react"
 
 
 const Container = styled.div`
@@ -30,7 +33,24 @@ const Image = styled.img`
 `
 
 const Products = () => {
+  
+       const [products, setProducts] = useState([]);
 
+       //products fetch from backend
+                
+             useEffect(() => {
+             axios.get('/products')
+            .then(response => {
+           
+            console.log(response.data);
+              setProducts(response.data);
+            })
+            .catch(error => {
+                  console.log('catch working');
+              console.log(error);
+            });
+        }, []);
+      
  const {cartList} = useSelector((state)=> state.cart)
  
 console.log(cartList);
@@ -40,9 +60,9 @@ console.log(cartList);
    <Header>ALL PRODUCTS</Header>
     <Container>
        
-      {popularProducts.map(product=>(
+      {products.map(product=>(
          <Card>
-         <Image src={product.img}/>
+         <Image src={product.cover_photo}/>
             <CartButtons product={product}/>       
           </Card>
          
