@@ -6,7 +6,6 @@ import axios from '../../axios'
 import {message} from 'antd'
 
  const CartButton = styled.div`
-      /* display: flex; */
     margin-left: 3rem;
     
  `

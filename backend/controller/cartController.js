@@ -2,11 +2,11 @@ const Cart = require('../model/cartSchema')
 
 
  const addToCart = (req,res) => {
-   
+  
         const userId = req.body.userId ? req.body.userId : null;
-         const productId = req.body.product._id
+        const productId = req.body.product._id
 
- try{
+ try{ 
 
     
     const myCart = new Cart({
@@ -112,22 +112,30 @@ const decreaseProductQuantity = (req, res) => {
 };
 
 
+
+
+// Increases the quantity of a product in the user's cart
 const increaseProductQuantity = (req, res) => {
-  const productId = req.params.id
-    console.log(productId); 
+  const productId = req.params.id;
+  
+  // Log the product ID to aid in debugging
+  console.log(`Product ID: ${productId}`);
         
+  // Update the user's cart to increase the quantity of the specified product
   Cart.updateMany(
     { "product.productId": productId },
     { $inc: { "product.$.quantity": 1 } },
     (error, updatedCart) => {
       if (error) {
-        console.log("Error updating cart: ", error);
+        // Log the error and send a 500 error response to the frontend
+        console.error(`Error updating cart: ${error}`);
         res.status(500).json({
           success: false,
           message: "Error updating cart"
         });
       } else {
-        console.log("Cart updated successfully: ", updatedCart);
+        // Log the updated cart and send a success response to the frontend
+        console.log(`Cart updated successfully: ${updatedCart}`);
         res.json({
           success: true,
           message: "Product quantity increased successfully"
@@ -136,6 +144,9 @@ const increaseProductQuantity = (req, res) => {
     }
   );
 };
+
+
+
 
 const deleteProduct = (req, res) => {
     //when order created then it's working for delete that product in cart

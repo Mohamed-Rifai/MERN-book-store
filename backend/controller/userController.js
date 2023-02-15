@@ -78,7 +78,7 @@ const loginUser = (req,res)=>{
                                         success: true,
                                         name: user.name,
                                         email:user.email, 
-                                        id:user.id,
+                                        userId:user.id,
                                         token: `Bearer ${token}`
                                     });
                                 }

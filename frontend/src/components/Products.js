@@ -1,8 +1,5 @@
 
 import styled from "styled-components"
-import {popularProducts} from '../data'
-import AfterCart  from './cartButtons/AfterCart'
-import BeforeCart  from './cartButtons/BeforeCart'
 import { useSelector } from "react-redux"
 import axios from '../axios'
 import CartButtons from "./cartButtons"

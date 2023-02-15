@@ -11,7 +11,7 @@ const HomePage = () => {
       <Slider/>
       <Categories/>
       <Products/>
-       <Products/>
+      
     </div>
   )
 }
