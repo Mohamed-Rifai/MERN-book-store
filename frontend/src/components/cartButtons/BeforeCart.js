@@ -20,12 +20,12 @@ const BeforeCart = ({product}) => {
 
  const dispatch = useDispatch()
  
-const { cartList } = useSelector((state) => state.cart);
+const { userId } = useSelector((state) => state.user);
   
  const handleClick = () => {
   dispatch(addToCart(product))
   
-    axios.post('/cart', { product })
+    axios.post('/cart', { product,userId })
          .then((response) => {
            console.log('Product ID sent to backend:', response.data);
          })

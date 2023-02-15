@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import {  decrement, increment } from "../../redux/Cart"
 import axios from '../../axios'
+import {message} from 'antd'
 
  const CartButton = styled.div`
       /* display: flex; */
@@ -44,6 +45,7 @@ const AfterCart = ({cartCount,productID }) => {
      if(isLoggedIn){
          dispatch(decrement(productID))
        await axios.delete(`/cart/deleteProduct/${productID}`)
+          message.success('Order Successfully completed')
      }else{
       navigate('/login')
      }

@@ -2,7 +2,7 @@ import React, {  useState } from 'react'
 import {  Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import HeaderNav from '../HeaderNav';
-import {setName,setEmail,setLoggedIn} from '../../redux/User'
+import {setName,setEmail,setLoggedIn,setUserId} from '../../redux/User'
 
 import axios from '../../axios';
 
@@ -28,7 +28,7 @@ function Login() {
    });
    const dispatch = useDispatch();
  
- const navigate = useNavigate()
+   const navigate = useNavigate()
 
     const handleChange = (event) => {
      setFormData({
@@ -49,12 +49,13 @@ function Login() {
 
       }).then((res)=>{
        
-        const { name, email} = res.data
-          
-        //name and email store into redux 
+        const { name, email,userId} = res.data
+          console.log(userId); 
+        //users datas store into redux 
          dispatch(setName(name));
          dispatch(setEmail(email));
-          dispatch(setLoggedIn(true));
+         dispatch(setUserId(userId));
+         dispatch(setLoggedIn(true));
 
         //token passed from backend  
         
