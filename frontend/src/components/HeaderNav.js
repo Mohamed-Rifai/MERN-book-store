@@ -118,7 +118,7 @@ const HeaderNav = () => {
 
       </SearchContainer>
       </Left>
-      <Center><Logo>MRead.</Logo></Center>
+      <Center><Logo>BOOKWORM</Logo></Center>
       <Right>
    
    {isLoggedIn ?<MenuItem>{name}</MenuItem>: <MenuItem>REGISTER</MenuItem>  }

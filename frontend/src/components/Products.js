@@ -65,7 +65,7 @@ const Products = () => {
       
  const {cartList} = useSelector((state)=> state.cart)
  
-// console.log(cartList);
+console.log(cartList);
     
   return (
     <>

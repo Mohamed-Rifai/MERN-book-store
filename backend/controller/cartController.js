@@ -137,12 +137,33 @@ const increaseProductQuantity = (req, res) => {
   );
 };
 
+const deleteProduct = (req, res) => {
+    //when order created then it's working for delete that product in cart
+  const productId = req.params.id;
+
+  Cart.deleteMany({ "product.productId": productId }, (error, result) => {
+    if (error) {
+      console.log("Error deleting product: ", error);
+      res.status(500).json({
+        success: false,
+        message: "Error deleting product"
+      });
+    } else {
+      console.log("Product deleted successfully: ", result);
+      res.json({
+        success: true,
+        message: "Product deleted successfully"
+      });
+    }
+  });
+};
 
 
 
 
 
-module.exports = {addToCart,decreaseProductQuantity,increaseProductQuantity}
+
+module.exports = {addToCart,decreaseProductQuantity,increaseProductQuantity,deleteProduct}
 
 
 

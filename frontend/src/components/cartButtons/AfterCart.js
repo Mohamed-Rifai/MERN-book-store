@@ -38,12 +38,14 @@ const AfterCart = ({cartCount,productID }) => {
 
 
 
-   const handleOrder = () => {
+   const handleOrder =async () => {
     // when order created, delete product in cart
+
      if(isLoggedIn){
-      console.log('logged in');
+         dispatch(decrement(productID))
+       await axios.delete(`/cart/deleteProduct/${productID}`)
      }else{
-      console.log('not logged in');
+      navigate('/login')
      }
     
 
@@ -53,7 +55,7 @@ const AfterCart = ({cartCount,productID }) => {
      const handleDecrement = () => {
     dispatch(decrement(productID))
    
-    //api call for decrement the product Quantity in db
+    //api call for decrement  product Quantity in db
 
      axios.put(`/cart/decr/${productID}`)
     .then(response => {
