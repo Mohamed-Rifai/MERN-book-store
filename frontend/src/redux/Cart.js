@@ -10,6 +10,8 @@ const cartSlice = createSlice({
     name:"cart",
     initialState,
     reducers:{
+
+
         addToCart: (state,action)=> {
       
               
@@ -17,8 +19,7 @@ const cartSlice = createSlice({
                   ...action.payload,
                   count:1,
               })
-        
-        },
+              },
         increment: (state,action)=> {
            const productID =  action.payload;
            state.cartList.forEach(item => {
@@ -36,6 +37,7 @@ const cartSlice = createSlice({
                item.count-- ;
                    if(!item.count > 0){
                     state.cartList.splice(index, 1);
+
                    }
             }
             

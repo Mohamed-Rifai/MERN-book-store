@@ -1,5 +1,9 @@
 import React, {  useState } from 'react'
-import {  useNavigate } from 'react-router-dom'
+import {  Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import HeaderNav from '../HeaderNav';
+import {setName,setEmail,setLoggedIn} from '../../redux/User'
+
 import axios from '../../axios';
 
 import {
@@ -22,6 +26,7 @@ function Login() {
      email: "",
      password: "",   
    });
+   const dispatch = useDispatch();
  
  const navigate = useNavigate()
 
@@ -43,8 +48,14 @@ function Login() {
         password: formData.password
 
       }).then((res)=>{
-        console.log('success');
-        console.log(res);
+       
+        const { name, email} = res.data
+          
+        //name and email store into redux 
+         dispatch(setName(name));
+         dispatch(setEmail(email));
+          dispatch(setLoggedIn(true));
+
         //token passed from backend  
         
         const token= res.data.token
@@ -63,6 +74,8 @@ function Login() {
    };
 
   return (
+    <>
+     <HeaderNav/>
     <MDBContainer fluid>
 
       <MDBRow className='d-flex justify-content-center align-items-center h-100'>
@@ -92,8 +105,8 @@ function Login() {
                onChange={handleChange}
                size="lg"/>
 
-
-              <button className='btn btn-primary' size='lg'>
+              <p>Don't have an account?<Link to={'/signup'}> <b>Sign up</b></Link></p>
+              <button className='btn btn-primary' size='lg' type='submit'>
                 Login
               </button>
             </form>
@@ -110,6 +123,7 @@ function Login() {
       </MDBRow>
 
     </MDBContainer>
+    </>
   );
 }
 

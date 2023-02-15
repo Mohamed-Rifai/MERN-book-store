@@ -1,5 +1,6 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components"
+import axios from "../../axios"
 import { addToCart } from "../../redux/Cart"
 
 const Button = styled.button`
@@ -18,16 +19,29 @@ const Button = styled.button`
 const BeforeCart = ({product}) => {
 
  const dispatch = useDispatch()
-
- const handleClick = ()=>{
-
-
- }
  
+const { cartList } = useSelector((state) => state.cart);
+  
+ const handleClick = () => {
+  dispatch(addToCart(product))
+  
+    axios.post('/cart', { product })
+         .then((response) => {
+           console.log('Product ID sent to backend:', response.data);
+         })
+         .catch((error) => {
+           console.log('Error sending product ID to backend:', error);
+         });
+
+
+   
+};
+   
+
 
   return (
     <>
-       <Button onClick={ () => dispatch(addToCart(product)) }>Add to cart</Button>
+       <Button onClick={ handleClick }>Add to cart</Button>
     </>
   )
 }

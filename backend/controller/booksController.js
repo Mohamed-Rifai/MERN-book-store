@@ -3,8 +3,9 @@ const BookStore = require('../model/bookSchema')
 
 
 
+//find products in Bookstore collection & pass to frontend
 
-const getProducts =async (req,res)=>{
+const getBooks =async (req,res)=>{
    
      
   const products = await BookStore.find()
@@ -14,4 +15,4 @@ const getProducts =async (req,res)=>{
 }
 
 
-module.exports = {getProducts}
+module.exports = {getBooks}

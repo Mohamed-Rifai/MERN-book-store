@@ -15,7 +15,13 @@ const Container = styled.div`
       display: flex;
       overflow-x: scroll;
       overflow-y: hidden;
-     
+      margin:2rem;
+      /* margin-bottom: 10rem; */
+      height: 40rem;
+       &::-webkit-scrollbar {
+        display: none; 
+      }
+  
 `
 const Header = styled.h3`
       margin: 1rem;
@@ -27,6 +33,12 @@ const Card = styled.div`
       min-width: 280px;
       height: 350px;
      
+`
+const Name = styled.p`
+      font-weight: 800;
+`
+const Price = styled.p`
+      font-weight: 600;
 `
 const Image = styled.img`
       height: 75%;
@@ -53,7 +65,7 @@ const Products = () => {
       
  const {cartList} = useSelector((state)=> state.cart)
  
-console.log(cartList);
+// console.log(cartList);
     
   return (
     <>
@@ -63,6 +75,8 @@ console.log(cartList);
       {products.map(product=>(
          <Card>
          <Image src={product.cover_photo}/>
+         <Name>{product.title}</Name>
+         <Price>₹ {product.price}</Price>
             <CartButtons product={product}/>       
           </Card>
          

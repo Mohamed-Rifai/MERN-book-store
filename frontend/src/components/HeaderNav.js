@@ -3,10 +3,18 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch,faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import 'font-awesome/css/font-awesome.min.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { logout } from '../redux/User'
 
 const Container = styled.div`
          height: 60px;
+        position:fixed;
+        width: 100%;
+        z-index: 1;
+        background-color: aliceblue;
+       
   `
 const Wrapper = styled.div`
          padding:10px 20px;
@@ -36,11 +44,8 @@ const Input = styled.input`
 const BadgeWrapper = styled.span`
   position: relative;
   display: inline-block;
-
-  
+ 
 `
-
-
 const Count = styled.span`
   position: absolute;
   top: -10px;
@@ -78,17 +83,35 @@ const MenuItem = styled.div`
 
 
 const HeaderNav = () => {
-
+  
+  const [searchQuery, setSearchQuery] = useState('');
   const {cartList} = useSelector((state)=> state.cart)
-  console.log(cartList.length);
+   const { name, isLoggedIn } = useSelector(state => state.user);
+  const navigate = useNavigate()
+    const dispatch = useDispatch();
 
+  const handleInputChange = (event) => {
+    setSearchQuery(event.target.value);
+
+  }
+
+  const handleLogout = () => {
+     dispatch(logout());
+    localStorage.removeItem('userToken');
+     
+     navigate('/')
+  };
+
+
+
+  
   return (
     <Container>
     <Wrapper>
       <Left>
         <Language>eng</Language>
       <SearchContainer>
-        <Input/>
+        <Input value={searchQuery} onChange={handleInputChange} placeholder="Search for books"/>
 
        <FontAwesomeIcon icon={faSearch} style={{color:"gray",fontSize:16}}/>
      
@@ -97,13 +120,17 @@ const HeaderNav = () => {
       </Left>
       <Center><Logo>MRead.</Logo></Center>
       <Right>
-
-   <MenuItem>REGISTER</MenuItem>
-   <MenuItem>SIGN IN</MenuItem>
+   
+   {isLoggedIn ?<MenuItem>{name}</MenuItem>: <MenuItem>REGISTER</MenuItem>  }
+   {isLoggedIn ? (
+            <MenuItem onClick={handleLogout}>Logout</MenuItem>
+          ) : (
+            <MenuItem onClick={()=> navigate('/login')}>Login</MenuItem>
+          )}
    <MenuItem>
     <BadgeWrapper>
-   <FontAwesomeIcon icon={faShoppingCart} />
-    <Count>{cartList?.length}</Count> 
+   <FontAwesomeIcon icon={faShoppingCart}  onClick={()=> navigate('/')}/>
+   {cartList.length > 0 ? <Count>{cartList.length}</Count> : null} 
    </BadgeWrapper>
    </MenuItem>
 
@@ -112,5 +139,6 @@ const HeaderNav = () => {
     </Container>
   )
 }
+
 
 export default HeaderNav

@@ -40,7 +40,7 @@ const SignuUser = (req,res)=>{
 }
 
 const loginUser = (req,res)=>{
-    console.log('hello reaacd');
+   
        
     //for validation using validator
      const { errors, isValid } = validateLoginInput(req.body);
@@ -70,7 +70,7 @@ const loginUser = (req,res)=>{
 
                             jwt.sign(payload, 'secret', 
                             {
-                                expiresIn: 3600
+                                expiresIn: '3d'
                             }, (err, token) => {
                                 if(err) console.error('There is some error in token', err);
                                 else {
