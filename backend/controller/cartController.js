@@ -2,7 +2,7 @@ const Cart = require('../model/cartSchema')
 
 
  const addToCart = (req,res) => {
-  
+       console.log(req.body);
         const userId = req.body.userId ? req.body.userId : null;
         const productId = req.body.product._id
 
@@ -32,7 +32,7 @@ myCart.save((error, savedCart) => {
           message: 'Error saving cart'
         });
   } else {
-    console.log('Cart saved successfully: ', savedCart);
+    console.log('Cart saved successfully: ', );
 
       res.json({
           success: true,

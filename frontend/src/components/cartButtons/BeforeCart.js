@@ -21,16 +21,16 @@ const BeforeCart = ({product}) => {
  const dispatch = useDispatch()
  
 const { userId } = useSelector((state) => state.user);
-  
- const handleClick = () => {
+
+const handleClick = () => {
   dispatch(addToCart(product))
   
     axios.post('/cart', { product,userId })
          .then((response) => {
-           console.log('Product ID sent to backend:', response.data);
+           console.log( response.data);
          })
          .catch((error) => {
-           console.log('Error sending product ID to backend:', error);
+           console.log(error);
          });
 
 

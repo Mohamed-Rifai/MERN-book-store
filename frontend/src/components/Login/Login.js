@@ -59,10 +59,10 @@ function Login() {
 
         //token passed from backend  
         
-        const token= res.data.token
-         console.log(token);
+        const userData= res.data
+         console.log(userData);
         
-        localStorage.setItem("userToken",token)
+        // localStorage.setItem("userToken",token)
         navigate('/') 
 
       }).catch((error)=>{

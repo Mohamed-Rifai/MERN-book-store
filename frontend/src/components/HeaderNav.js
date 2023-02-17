@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch,faShoppingCart } from '@fortawesome/free-solid-svg-icons';
@@ -101,6 +101,7 @@ const HeaderNav = () => {
      
      navigate('/')
   };
+
 
 
 
